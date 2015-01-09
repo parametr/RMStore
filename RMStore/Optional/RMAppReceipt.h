@@ -53,6 +53,10 @@ __attribute__((availability(ios,introduced=7.0)))
  */
 @property (nonatomic, strong, readonly) NSArray *inAppPurchases;
 
+/** The original purchase date of the app.
+ */
+@property (nonatomic, strong, readonly) NSDate *originalPurchaseDate;
+
 /** The version of the app that was originally purchased. This corresponds to the value of CFBundleVersion (in iOS) or CFBundleShortVersionString (in OS X) in the Info.plist file when the purchase was originally made. In the sandbox environment, the value of this field is always “1.0”.
  */
 @property (nonatomic, strong, readonly) NSString *originalAppVersion;

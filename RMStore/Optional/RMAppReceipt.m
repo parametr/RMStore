@@ -30,7 +30,10 @@ NSInteger const RMAppReceiptASN1TypeBundleIdentifier = 2;
 NSInteger const RMAppReceiptASN1TypeAppVersion = 3;
 NSInteger const RMAppReceiptASN1TypeOpaqueValue = 4;
 NSInteger const RMAppReceiptASN1TypeHash = 5;
+NSInteger const RMAppReceiptASN1TypeRecentDownloadDate = 8; // No guarantees
+NSInteger const RMAppReceiptASN1TypeRecentDownloadDate2 = 12; // No guarantees
 NSInteger const RMAppReceiptASN1TypeInAppPurchaseReceipt = 17;
+NSInteger const RMAppReceiptASN1TypeOriginalAppPurchaseDate = 18;
 NSInteger const RMAppReceiptASN1TypeOriginalAppVersion = 19;
 NSInteger const RMAppReceiptASN1TypeExpirationDate = 21;
 
@@ -133,6 +136,12 @@ static NSURL *_appleRootCertificateURL = nil;
                 {
                     RMAppReceiptIAP *purchase = [[RMAppReceiptIAP alloc] initWithASN1Data:data];
                     [purchases addObject:purchase];
+                    break;
+                }
+                case RMAppReceiptASN1TypeOriginalAppPurchaseDate:
+                {
+                    NSString *string = RMASN1ReadIA5SString(&s, length);
+                    _originalPurchaseDate = [RMAppReceipt formatRFC3339String:string];
                     break;
                 }
                 case RMAppReceiptASN1TypeOriginalAppVersion:
