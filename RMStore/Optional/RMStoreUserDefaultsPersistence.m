@@ -66,7 +66,7 @@ NSString* const RMStoreTransactionsUserDefaultsKey = @"RMStoreTransactions";
             transaction.consumed = YES;
             NSData *updatedData = [self dataWithTransaction:transaction];
             NSMutableArray *updatedTransactions = [NSMutableArray arrayWithArray:transactions];
-            NSInteger index = [updatedTransactions indexOfObject:data];
+            NSUInteger index = [updatedTransactions indexOfObject:data];
             updatedTransactions[index] = updatedData;
             [self setTransactions:updatedTransactions forProductIdentifier:productIdentifier];
             return YES;

@@ -403,7 +403,7 @@
 			name = RMStoreTests;
 			productName = RMStoreTests;
 			productReference = A0AF3D1917A802F300D2E836 /* RMStoreTests.xctest */;
-			productType = "com.apple.product-type.bundle";
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		A0AF3D7117A8085900D2E836 /* RMStoreDemo */ = {
 			isa = PBXNativeTarget;
@@ -610,6 +610,7 @@
 		A0AF3D2E17A802F300D2E836 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_WARN_IMPLICIT_SIGN_CONVERSION = YES;
 				DSTROOT = /tmp/RMStore.dst;
 				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
 				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = YES;
@@ -638,6 +639,7 @@
 		A0AF3D2F17A802F300D2E836 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_WARN_IMPLICIT_SIGN_CONVERSION = YES;
 				DSTROOT = /tmp/RMStore.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "";

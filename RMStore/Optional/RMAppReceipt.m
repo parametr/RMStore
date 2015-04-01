@@ -74,7 +74,7 @@ static NSData* RMASN1ReadOctectString(const uint8_t **pp, long omax)
     ASN1_get_object(pp, &length, &tag, &asn1Class, omax);
     if (tag == V_ASN1_OCTET_STRING)
     {
-        data = [NSData dataWithBytes:*pp length:length];
+        data = [NSData dataWithBytes:*pp length:(NSUInteger)length];
     }
     *pp += length;
     return data;
@@ -88,7 +88,7 @@ static NSString* RMASN1ReadString(const uint8_t **pp, long omax, int expectedTag
     ASN1_get_object(pp, &length, &tag, &asn1Class, omax);
     if (tag == expectedTag)
     {
-        value = [[NSString alloc] initWithBytes:*pp length:length encoding:encoding];
+        value = [[NSString alloc] initWithBytes:*pp length:(NSUInteger)length encoding:encoding];
     }
     *pp += length;
     return value;
@@ -114,9 +114,9 @@ static NSURL *_appleRootCertificateURL = nil;
     {
         NSMutableArray *purchases = [NSMutableArray array];
          // Explicit casting to avoid errors when compiling as Objective-C++
-        [RMAppReceipt enumerateASN1Attributes:(const uint8_t*)asn1Data.bytes length:asn1Data.length usingBlock:^(NSData *data, int type) {
+        [RMAppReceipt enumerateASN1Attributes:(const uint8_t*)asn1Data.bytes length:(long)asn1Data.length usingBlock:^(NSData *data, int type) {
             const uint8_t *s = (const uint8_t*)data.bytes;
-            const NSUInteger length = data.length;
+            const long length = (long)data.length;
             switch (type)
             {
                 case RMAppReceiptASN1TypeBundleIdentifier:
@@ -246,7 +246,7 @@ static NSURL *_appleRootCertificateURL = nil;
         if (PKCS7_type_is_data(contents))
         {
             ASN1_OCTET_STRING *octets = contents->d.data;
-            data = [NSData dataWithBytes:octets->data length:octets->length];
+            data = [NSData dataWithBytes:octets->data length:(NSUInteger)octets->length];
         }
     }
     PKCS7_free(p7);
@@ -339,9 +339,9 @@ static NSURL *_appleRootCertificateURL = nil;
     if (self = [super init])
     {
         // Explicit casting to avoid errors when compiling as Objective-C++
-        [RMAppReceipt enumerateASN1Attributes:(const uint8_t*)asn1Data.bytes length:asn1Data.length usingBlock:^(NSData *data, int type) {
+        [RMAppReceipt enumerateASN1Attributes:(const uint8_t*)asn1Data.bytes length:(long)asn1Data.length usingBlock:^(NSData *data, int type) {
             const uint8_t *p = (const uint8_t*)data.bytes;
-            const NSUInteger length = data.length;
+            const long length = (long)data.length;
             switch (type)
             {
                 case RMAppReceiptASN1TypeQuantity:
